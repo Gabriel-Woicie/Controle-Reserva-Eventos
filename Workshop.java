@@ -1,25 +1,29 @@
-import java.util.Date;
-
 public class Workshop extends Evento {
-    private String instrutores;
-    private String materiaisNecessarios;
-    private int cargaHoraria; // Em horas
+    private String instrutor;
+    private String materiais;
+    private int cargaHoraria;
 
-    public Workshop(String nome, Date data, String local, int capacidadeMaxima, String instrutores, String materiaisNecessarios, int cargaHoraria) {
+    public Workshop(String nome, String data, String local, int capacidadeMaxima, String instrutor, String materiais, int cargaHoraria) {
         super(nome, data, local, capacidadeMaxima);
-        this.instrutores = instrutores;
-        this.materiaisNecessarios = materiaisNecessarios;
+        this.instrutor = instrutor;
+        this.materiais = materiais;
         this.cargaHoraria = cargaHoraria;
-        // O instrutor também é um participante
-        try {
-            this.adicionarParticipante(new Participante(instrutores, instrutores + "@evento.com", true));
-        } catch (ReservaException e) {
-            System.out.println("Erro ao adicionar instrutor: " + e.getMessage());
-        }
+    }
+
+    public String getInstrutor() {
+        return instrutor;
+    }
+
+    public String getMateriais() {
+        return materiais;
+    }
+
+    public int getCargaHoraria() {
+        return cargaHoraria;
     }
 
     @Override
-    public void detalhesEspecificos() {
-        System.out.println("Instrutores: " + instrutores + ", Materiais: " + materiaisNecessarios + ", Carga Horária: " + cargaHoraria + " horas");
+    public String toString() {
+        return super.toString() + " - Instrutor: " + instrutor + " - Materiais: " + materiais + " - Carga Horária: " + cargaHoraria + " horas";
     }
 }
